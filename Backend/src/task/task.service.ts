@@ -2,7 +2,7 @@ import { HttpException, Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { CreateTaskDto, UpdateTaskDto } from "./dto/task.dto";
 import { Task } from "./entity/task.entity";
-import { TaskValidatorPipe } from "./validationPipe";
+import { CreateTaskValidatorPipe } from "./validationPipe";
 
 @Injectable()
 export class TaskService {
@@ -10,7 +10,7 @@ export class TaskService {
     constructor(
         @Inject('TASK_REPOSITORY')
         private taskRepository: Repository<Task>,
-        private validationPipe: TaskValidatorPipe
+        private validationPipe: CreateTaskValidatorPipe
     ) {}
 
     async createTask(task: CreateTaskDto) {

@@ -4,7 +4,7 @@ import { CreateTaskDto, UpdateTaskDto } from './dto/task.dto';
 
 import { TaskSchema } from './dto/task.dto';
 
-export class TaskValidatorPipe implements PipeTransform<CreateTaskDto, UpdateTaskDto> {
+export class CreateTaskValidatorPipe implements PipeTransform<CreateTaskDto, UpdateTaskDto> {
 
   public transform(value: CreateTaskDto | UpdateTaskDto): CreateTaskDto | UpdateTaskDto {
 

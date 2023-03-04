@@ -1,6 +1,7 @@
 import { Employee } from "src/employees/entity/employee.entity";
-import { Column, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity('tasks')
 export class Task {
 
     @PrimaryGeneratedColumn('uuid')
