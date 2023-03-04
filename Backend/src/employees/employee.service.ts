@@ -1,41 +1,88 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { HttpException, Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { CreateEmployeeDto, UpdateEmployeeDto } from "./dto/employee.dto";
 import { Employee } from "./entity/employee.entity";
+import { CreateEmployeeValidatorPipe } from "./validation.pipe";
 
 @Injectable()
 export class EmployeeService {
 
     constructor(
         @Inject('EMPLOYEE_REPOSITORY')
-        private employeeRepository: Repository<Employee>
+        private employeeRepository: Repository<Employee>,
+        private validationPipe: CreateEmployeeValidatorPipe
     ) {}
     
-    getAllEmployees() {
-        this.employeeRepository.find();
-    }
-
-    getEmployee(email: string) {
-        this.employeeRepository.find({
-            where: { email }
+    async getAllEmployees() {
+        return await this.employeeRepository.find({
+            relations: {
+                tasks: true
+            }
         });
     }
 
-    createEmployee(employee: CreateEmployeeDto) {
-        this.employeeRepository.save(employee);
+    async getEmployee(email: string) {
+        return await this.employeeRepository.find({
+            where: { email },
+            relations: {
+                tasks: true
+            }
+        });
     }
 
-    updateEmployee(email: string, employee: UpdateEmployeeDto) {
+    async createEmployee(employee: CreateEmployeeDto) {
+
+        try {
+
+            this.validationPipe.transform(employee);
+
+            return await this.employeeRepository.save(employee);
+
+        } catch (error) {
+
+            throw new HttpException(error.message, error.status ?? 500);
+
+        }
         
-        this.employeeRepository.findOne({
-            where: { email }
-        });
-
-        this.employeeRepository.save(employee);
     }
 
-    removeEmployee(email: string) {
+    async updateEmployee(email: string, employee: UpdateEmployeeDto) {
 
-        this.employeeRepository.delete(email);
+        try {
+
+            this.validationPipe.transform(employee);
+        
+            const existingEmployee = await this.employeeRepository.findOne({
+                where: { email }
+            });
+
+            for (let key in employee) {
+
+                existingEmployee[key] = employee[key];
+
+            }
+
+            return await this.employeeRepository.save(existingEmployee);
+
+        } catch(error) {
+
+            throw new HttpException(error.message, error.status ?? 500);
+        }
+        
+    }
+
+    async removeEmployee(email: string) {
+
+        try {
+
+            return await this.employeeRepository.delete(email);
+
+        } catch(error) {
+
+            throw new HttpException(error.message, error.status ?? 500);
+            
+        }
+        
+        
     }
 }

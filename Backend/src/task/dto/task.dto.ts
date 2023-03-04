@@ -1,3 +1,5 @@
+import Joi from 'joi';
+
 export class CreateTaskDto {
     id: string;
     title: string;
@@ -14,3 +16,16 @@ export class UpdateTaskDto {
     end_date: string;
     comments: string;    
 }
+
+export const TaskSchema = Joi.object({
+
+    id: Joi.string(),
+    title: Joi.string().required(),
+    difficulty: Joi.number().required(),
+    start_date: Joi.date().required(),
+    end_date: Joi.date().required(),
+    comments: Joi.string()
+
+}).options({
+  abortEarly: false,
+});
