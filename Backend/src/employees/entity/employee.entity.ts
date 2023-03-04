@@ -1,4 +1,5 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Task } from "src/task/entity/task.entity";
+import { Column, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 export class Employee {
 
@@ -28,4 +29,7 @@ export class Employee {
 
     @Column('date')
     contract_exp_date: string;
+
+    @OneToMany(() => Task, (task) => task.employee)
+    tasks: Task[]
 }

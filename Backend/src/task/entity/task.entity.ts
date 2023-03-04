@@ -1,4 +1,5 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Employee } from "src/employees/entity/employee.entity";
+import { Column, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 export class Task {
 
@@ -20,4 +21,6 @@ export class Task {
     @Column('text')
     comments: string;
 	
+    @ManyToOne(() => Employee, (employee) => employee.tasks)
+    employee: Employee;
 }
