@@ -1,4 +1,4 @@
-import { Employee } from "src/employees/entity/employee.entity";
+import { Employee } from "src/rest/employees/entity/employee.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('tasks')

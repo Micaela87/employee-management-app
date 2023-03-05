@@ -1,4 +1,6 @@
 import { ConfigService } from 'src/ConfigService';
+import { Employee } from 'src/rest/employees/entity/employee.entity';
+import { Task } from 'src/rest/task/entity/task.entity';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
@@ -11,12 +13,15 @@ export const databaseProviders = [
             port: ConfigService.getConfigBykey("PORT"),
             username: ConfigService.getConfigBykey("USERNAME"),
             password: ConfigService.getConfigBykey("PASSWORD"),
+            schema: ConfigService.getConfigBykey("SCHEMA"),
+            uuidExtension: ConfigService.getConfigBykey("UUID_EXTENSION"),
+            installExtensions: ConfigService.getConfigBykey("INSTALL_EXTENSIONS"),
             database: ConfigService.getConfigBykey("DATABASE"),
-            entities: [__dirname + "dist/**/*.entity{.ts,.js}"],
+            entities: [Employee, Task],
             synchronize: ConfigService.getConfigBykey("SYNCHRONIZE"),
         });
   
-        return dataSource.initialize();
+        return await dataSource.initialize();
       },
     },
   ];

@@ -1,10 +1,13 @@
-import { Task } from "src/task/entity/task.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Table } from "typeorm";
+import { Task } from "src/rest/task/entity/task.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('employees')
+@Entity('employee')
 export class Employee {
 
     @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @Column()
     email: string;
 
     @Column()

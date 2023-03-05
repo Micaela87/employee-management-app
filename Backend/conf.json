@@ -5,6 +5,8 @@
     "USERNAME": "postgres",
     "PASSWORD": "postgres",
     "DATABASE": "employees_management_app",
-    "ENTITIES": "dist/**/*.entity{.ts,.js}",
-    "SYNCHRONIZE": true
+    "SYNCHRONIZE": true,
+    "SCHEMA": "public",
+    "UUID_EXTENSION": "uuid-ossp",
+    "INSTALL_EXTENSIONS": true
 }
