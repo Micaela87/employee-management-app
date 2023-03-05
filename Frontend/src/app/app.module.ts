@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { EmployeesProgressComponent } from './employees-progress/employees-progress.component';
@@ -15,7 +17,10 @@ import { HomepageComponent } from './homepage/homepage.component';
     HomepageComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
