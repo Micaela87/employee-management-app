@@ -27,6 +27,9 @@ export class Employee {
 	
     @Column({ nullable: true })
     phone: string;
+
+    @Column({ nullable: true })
+    profile_picture: string;
 	
     @Column('date')
     contract_start_date: string;
