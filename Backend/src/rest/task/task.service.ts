@@ -1,5 +1,6 @@
 import { HttpException, Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
+import { Employee } from "../employees/entity/employee.entity";
 import { CreateTaskDto, UpdateTaskDto } from "./dto/task.dto";
 import { Task } from "./entity/task.entity";
 import { CreateTaskValidatorPipe } from "./validationPipe";
@@ -10,6 +11,8 @@ export class TaskService {
     constructor(
         @Inject('TASK_REPOSITORY')
         private taskRepository: Repository<Task>,
+        @Inject('EMPLOYEE_REPOSITORY')
+        private employeeRepository: Repository<Employee>,
         private validationPipe: CreateTaskValidatorPipe
     ) {}
 
@@ -19,7 +22,19 @@ export class TaskService {
 
             this.validationPipe.transform(task);
 
-            return await this.taskRepository.save(task);
+            const employee: Employee = await this.employeeRepository.findOne({
+                where: { id: task.employeeId }
+            });
+
+            const newTask = new Task();
+
+            for (let key in task) {
+                newTask[key] = task[key];
+            }
+
+            newTask.employee = employee;
+
+            return await this.taskRepository.save(newTask);
 
         } catch(error) {
 
@@ -35,13 +50,19 @@ export class TaskService {
 
             this.validationPipe.transform(task);
 
-            const existingTask = await this.taskRepository.find({
+            const [existingTask] = await this.taskRepository.find({
                 where: { id }
+            });
+
+            const employee: Employee = await this.employeeRepository.findOne({
+                where: { id: task.employeeId }
             });
 
             for (let key in task) {
                 existingTask[key] = task[key];
             }
+
+            existingTask.employee = employee;
 
             return await this.taskRepository.save(existingTask);
 

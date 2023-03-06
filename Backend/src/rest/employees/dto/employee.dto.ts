@@ -6,10 +6,11 @@ export class CreateEmployeeDto {
     password: string;
     first_name: string;
     last_name: string;
-    birthdate: string;
-    phone: string;
+    birthdate?: string;
+    phone?: string;
     contract_start_date: string;
     contract_exp_date: string;
+    profile_picture?: string;
 }
 
 export class UpdateEmployeeDto {
@@ -18,10 +19,11 @@ export class UpdateEmployeeDto {
     password: string;
     first_name: string;
     last_name: string;
-    birthdate: string;
-    phone: string;
+    birthdate?: string;
+    phone?: string;
     contract_start_date: string;
-    contract_exp_date: string;    
+    contract_exp_date: string;
+    profile_picture?: string;    
 }
 
 export const EmployeeSchema = Joi.object({
@@ -34,7 +36,8 @@ export const EmployeeSchema = Joi.object({
     birthdate: Joi.date(),
     phone: Joi.string(),
     contract_start_date: Joi.date().required(),
-    contract_exp_date: Joi.date().required()
+    contract_exp_date: Joi.date().required(),
+    profile_picture: Joi.string()
 
 }).options({
   abortEarly: false,

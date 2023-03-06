@@ -32,6 +32,8 @@ export class EmployeeService {
 
     async createEmployee(employee: CreateEmployeeDto) {
 
+        console.log('employee', employee);
+
         try {
 
             this.validationPipe.transform(employee);

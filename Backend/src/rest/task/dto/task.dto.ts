@@ -6,7 +6,9 @@ export class CreateTaskDto {
     difficulty: number;
     start_date: string;
     end_date: string;
-    comments: string;
+    ext_date: string;
+    comments?: string;
+    employeeId: string;
 }
 
 export class UpdateTaskDto {
@@ -14,7 +16,9 @@ export class UpdateTaskDto {
     difficulty: number;
     start_date: string;
     end_date: string;
-    comments: string;    
+    ext_date: string;
+    comments?: string;
+    employeeId: string;   
 }
 
 export const TaskSchema = Joi.object({
@@ -24,7 +28,9 @@ export const TaskSchema = Joi.object({
     difficulty: Joi.number().required(),
     start_date: Joi.date().required(),
     end_date: Joi.date().required(),
-    comments: Joi.string()
+    comments: Joi.string(),
+    ext_date: Joi.date().required(),
+    employeeId: Joi.string().required()
 
 }).options({
   abortEarly: false,
