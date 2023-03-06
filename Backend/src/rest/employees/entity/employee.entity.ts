@@ -22,10 +22,10 @@ export class Employee {
     @Column()
     last_name: string;
 	
-    @Column('date')
+    @Column('date', { nullable: true })
     birthdate: string;
 	
-    @Column()
+    @Column({ nullable: true })
     phone: string;
 	
     @Column('date')
@@ -34,6 +34,6 @@ export class Employee {
     @Column('date')
     contract_exp_date: string;
 
-    @OneToMany(() => Task, (task) => task.employee)
+    @OneToMany(() => Task, (task) => task.employee, { nullable: true })
     tasks: Task[]
 }

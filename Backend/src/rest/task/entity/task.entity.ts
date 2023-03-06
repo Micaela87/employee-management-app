@@ -18,10 +18,13 @@ export class Task {
 	
     @Column('date')
     end_date: string;
+
+    @Column('date')
+    ext_date: string;
 	
     @Column('text')
     comments: string;
 	
-    @ManyToOne(() => Employee, (employee) => employee.tasks)
+    @ManyToOne(() => Employee, (employee) => employee.tasks, { nullable: false })
     employee: Employee;
 }
