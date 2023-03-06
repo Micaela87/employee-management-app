@@ -1,8 +1,11 @@
 <div>
-    <div *ngFor="let key of objectKeys(employee)">
-       <ng-container *ngIf="!isArray(employee![key])">
-        <a [routerLink]="'/employee-progress/' + employee.id" routerLinkActive="active" ariaCurrentWhenActive="page">
-            <p>{{key}} - {{ employee![key] }}</p>
-        </a>
-       </ng-container>
+    <ng-container *ngFor="let employee of employees">
+        <div *ngFor="let key of objectKeys(employee)">
+        <ng-container *ngIf="!isArray(employee![key])">
+            <a [routerLink]="'/employee-progress/' + employee.id" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <p>{{key}} - {{ employee![key] }}</p>
+            </a>
+        </ng-container>
+        </div>
+    </ng-container>
 </div>

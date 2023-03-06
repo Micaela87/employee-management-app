@@ -23,8 +23,9 @@ export class EmployeeProgressComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.employeeId = params['id'];
-      });
+    });
     
+    console.log(this.employeeId);
     
   }
 
