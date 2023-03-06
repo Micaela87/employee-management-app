@@ -5,7 +5,7 @@ import { EmployeesProgressComponent } from "./employees-progress/employees-progr
 import { HomepageComponent } from "./homepage/homepage.component";
 
 export const routes: Routes = [
-    { path: 'employee', component: EmployeeComponent },
+    { path: 'employees', component: EmployeeComponent },
     { path: 'employee-progress/:id', component: EmployeeProgressComponent },
     { path: 'employees-progress', component: EmployeesProgressComponent },
     { path: '', component: HomepageComponent }
