@@ -1,11 +1,8 @@
-<div *ngFor="let key of objectKeys(employee)">
-    
-    <p>{{key}} - {{ employee[key] }}</p>
-
-    <ng-container *ngIf="isArray(employee[key])">
+<div>
+    <ng-container>
         <ngx-charts-line-chart
             [view]="[1000,400]"
-            [results]="formatResults(employee[key])"
+            [results]="formatEmployeeTimeResults(tasks)"
             [xAxisLabel]="'Difficulty'"
             [legendTitle]="'Employee Progress'"
             [yAxisLabel]="'Hours'"
@@ -16,6 +13,22 @@
             [yAxis]="true"
             [gradient]="false"
             [roundDomains]="true"
+            [autoScale]="false"
+        ></ngx-charts-line-chart>
+        <ngx-charts-line-chart
+            [view]="[1000,400]"
+            [results]="formatEmployeeProgressResults(tasks)"
+            [xAxisLabel]="'Difficulty'"
+            [legendTitle]="'Employee Progress'"
+            [yAxisLabel]="'Hours'"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [gradient]="false"
+            [roundDomains]="true"
+            [autoScale]="false"
         ></ngx-charts-line-chart>
     </ng-container>
 </div>

@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { EmployeesProgressComponent } from './employees-progress/employees-progress.component';
 import { EmployeeProgressComponent } from './employee-progress/employee-progress.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesProgressComponent,
     EmployeeProgressComponent,
-    HomepageComponent
+    HomepageComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
