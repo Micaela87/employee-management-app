@@ -4,5 +4,6 @@ export type Task = {
     difficulty: number;
     start_date: Date;
     end_date: Date;
+    ext_date: Date;
     comments?: string;
 }
