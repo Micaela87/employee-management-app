@@ -35,16 +35,10 @@ export class EmployeeProgressComponent implements OnInit {
           
           const employee = await response.json();
 
-          console.log(employee);
-
           this.tasks = employee.tasks;
-
-          console.log(this.tasks);
 
           this.taskTime = this.formatEmployeeTimeResults(this.tasks);
           this.employeeProgress = this.formatEmployeeProgressResults(this.tasks);
-
-          console.log(this.taskTime, this.employeeProgress);
         }
 
       } catch(error) {
@@ -58,7 +52,6 @@ export class EmployeeProgressComponent implements OnInit {
   }
 
   formatEmployeeTimeResults(value: any) {
-    console.log(value);
     return [{ name: 'Employee task time', series: value.map((task: any) => {
       return {name: task.difficulty, value: (new Date(task.end_date).getTime() - new Date(task.start_date).getTime())/(60*60*1000)}
     })}];
