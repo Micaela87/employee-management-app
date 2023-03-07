@@ -66,14 +66,10 @@ export class EmployeeProgressComponent implements OnInit {
 
   formatEmployeeProgressResults(value: any) {
     return [{ name: 'Employee progress', series: value.map((task: any) => {
-      return {name: task.difficulty, value: this.calculateEmployeePerformance(new Date(task.end_date), new Date(task.ext_date))}
+      return {name: task.difficulty, value: new Date(task.end_date).getHours()}
     })}, {name: 'Task expected time', series: value.map((task: any) => {
       return {name: task.difficulty, value: new Date(task.ext_date).getHours()}
     })}];
-  }
-
-  calculateEmployeePerformance(endDate: Date, extDate: Date) {
-    return new Date(extDate.getTime() - endDate.getTime()).getHours();
   }
 
 }
