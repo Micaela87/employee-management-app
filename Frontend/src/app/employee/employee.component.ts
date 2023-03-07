@@ -10,6 +10,18 @@ export class EmployeeComponent implements OnInit {
 
   employees?: any[];
 
+  labelsMap: {[key: string]: string[]} = {
+    "email": ["Email", "string"],
+    "username": ["Username", "string"],
+    "password": ["Password", "password"],
+    "first_name": ["Nome", "string"],
+    "last_name": ["Cognome", "string"],
+    "birthdate": ["Data di nascita", "date"],
+    "phone": ["Numero di telefono", "string"],
+    "contract_start_date": ["Inizio rapporto di lavoro", "date"],
+    "contract_exp_date": ["Fine rapporto di lavoro", "date"]
+  }
+
   async ngOnInit() {
 
     try {
@@ -32,5 +44,13 @@ export class EmployeeComponent implements OnInit {
 
   isArray(value: any) {
     return Array.isArray(value);
+  }
+
+  isDate(key: any) {
+    return this.labelsMap[key][1] === "date";
+  }
+
+  isPassword(key: any) {
+    return this.labelsMap[key][1] === "password";
   }
 }

@@ -9,14 +9,20 @@ import { EmployeesProgressComponent } from './employees-progress/employees-progr
 import { EmployeeProgressComponent } from './employee-progress/employee-progress.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { PasswordPipe } from './pipes/password.pipe';
 
 @NgModule({
   declarations: [
+
+    // components
     AppComponent,
     EmployeesProgressComponent,
     EmployeeProgressComponent,
     HomepageComponent,
-    EmployeeComponent
+    EmployeeComponent,
+
+    // pipes
+    PasswordPipe
   ],
   imports: [
     BrowserModule,

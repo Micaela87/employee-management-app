@@ -1,10 +1,10 @@
-<div>
-    <ng-container>
+<div class="flex-container" style="height: 100vh; padding: 20px 0">
+    <ng-container *ngIf="taskTime.length && employeeProgress.length">
         <ngx-charts-line-chart
-            [view]="[1000,400]"
-            [results]="formatEmployeeTimeResults(tasks)"
+            [view]="[1000,360]"
+            [results]="taskTime"
             [xAxisLabel]="'Difficulty'"
-            [legendTitle]="'Employee Progress'"
+            [legendTitle]="'Employee Task Time'"
             [yAxisLabel]="'Hours'"
             [legend]="true"
             [showXAxisLabel]="true"
@@ -16,11 +16,11 @@
             [autoScale]="false"
         ></ngx-charts-line-chart>
         <ngx-charts-line-chart
-            [view]="[1000,400]"
-            [results]="formatEmployeeProgressResults(tasks)"
+            [view]="[1000,360]"
+            [results]="employeeProgress"
             [xAxisLabel]="'Difficulty'"
             [legendTitle]="'Employee Progress'"
-            [yAxisLabel]="'Hours'"
+            [yAxisLabel]="'Extimated Time in Hours'"
             [legend]="true"
             [showXAxisLabel]="true"
             [showYAxisLabel]="true"

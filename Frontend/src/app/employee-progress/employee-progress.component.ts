@@ -10,39 +10,70 @@ import { ActivatedRoute } from '@angular/router'
 
 export class EmployeeProgressComponent implements OnInit {
 
-  hourInMillis: number = 3600000;
-
-  @Input() tasks?: any;
+  tasks?: Task[];
   employeeId!: string;
+  taskTime: any = [];
+  employeeProgress: any = [];
 
   constructor(
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
     this.route.params.subscribe(params => {
       this.employeeId = params['id'];
     });
     
-    console.log(this.employeeId);
+    if (this.employeeId) {
+      
+      try {
+
+        const response = await fetch('http://localhost:3000/employee/' + this.employeeId);
+
+        if (response.ok) {
+          
+          const employee = await response.json();
+
+          console.log(employee);
+
+          this.tasks = employee.tasks;
+
+          console.log(this.tasks);
+
+          this.taskTime = this.formatEmployeeTimeResults(this.tasks);
+          this.employeeProgress = this.formatEmployeeProgressResults(this.tasks);
+
+          console.log(this.taskTime, this.employeeProgress);
+        }
+
+      } catch(error) {
+        console.log(error);
+        throw new Error('Ooops something went wrong');
+
+      }
+      
+    }
     
   }
 
   formatEmployeeTimeResults(value: any) {
+    console.log(value);
     return [{ name: 'Employee Tasks Time', series: value.map((task: any) => {
-      return {name: task.difficulty, value: new Date(task.end_date.getTime() - task.start_date.getTime())}
+      return {name: task.difficulty, value: new Date(new Date(task.end_date).getTime() - new Date(task.start_date).getTime()).getHours()}
     })}];
   }
 
   formatEmployeeProgressResults(value: any) {
     return [{ name: 'Employee progress', series: value.map((task: any) => {
-      return {name: task.difficulty, value: this.calculateEmployeePerformance(task.start_date, task.end_date, (task.difficulty * this.hourInMillis))}
+      return {name: task.difficulty, value: this.calculateEmployeePerformance(new Date(task.end_date), new Date(task.ext_date))}
+    })}, {name: 'Task expected time', series: value.map((task: any) => {
+      return {name: task.difficulty, value: new Date(task.ext_date).getHours()}
     })}];
   }
 
-  calculateEmployeePerformance(startDate: Date, endDate: Date, extDate: number) {
-    return extDate - (endDate.getTime() - startDate.getTime());
+  calculateEmployeePerformance(endDate: Date, extDate: Date) {
+    return new Date(extDate.getTime() - endDate.getTime()).getHours();
   }
 
 }

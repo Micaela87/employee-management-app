@@ -1,11 +1,24 @@
-<div>
-    <ng-container *ngFor="let employee of employees">
-        <div *ngFor="let key of objectKeys(employee)">
-        <ng-container *ngIf="!isArray(employee![key])">
-            <a [routerLink]="'/employee-progress/' + employee.id" routerLinkActive="active" ariaCurrentWhenActive="page">
-                <p>{{key}} - {{ employee![key] }}</p>
-            </a>
-        </ng-container>
-        </div>
-    </ng-container>
+<div class="flex-container">
+    <div *ngFor="let employee of employees" class="employee-card">
+        
+        <a [routerLink]="'/employee-progress/' + employee.id" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <div class="img-container">
+                <img [src]="'../../assets/src/' + employee!['profile_picture']">
+            </div>
+            <div *ngFor="let key of objectKeys(employee)" class="employee-infos">
+                <ng-container *ngIf="!isArray(employee![key])">
+                    <ng-container *ngIf="key !== 'profile_picture' && key !== 'id'">
+                        <h4>{{labelsMap[key][0]}}</h4>
+                        <div *ngIf="isPassword(key); else isNotPassword">{{ (employee![key] | passwordHashed) }}</div>
+                        <ng-template #isNotPassword>
+                            <div *ngIf="!isDate(key); else isdate">{{ employee![key] }}</div>
+                            <ng-template #isdate>
+                                <div>{{ employee![key] | date: 'dd/MM/YYYY' }}</div>
+                            </ng-template>
+                        </ng-template>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </a>
+    </div>
 </div>
