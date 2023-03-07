@@ -59,13 +59,13 @@ export class EmployeeProgressComponent implements OnInit {
 
   formatEmployeeTimeResults(value: any) {
     console.log(value);
-    return [{ name: 'Employee Tasks Time', series: value.map((task: any) => {
+    return [{ name: 'Employee task time', series: value.map((task: any) => {
       return {name: task.difficulty, value: new Date(new Date(task.end_date).getTime() - new Date(task.start_date).getTime()).getHours()}
     })}];
   }
 
   formatEmployeeProgressResults(value: any) {
-    return [{ name: 'Employee progress', series: value.map((task: any) => {
+    return [{ name: 'Employee task time', series: value.map((task: any) => {
       return {name: task.difficulty, value: new Date(task.end_date).getHours()}
     })}, {name: 'Task expected time', series: value.map((task: any) => {
       return {name: task.difficulty, value: new Date(task.ext_date).getHours()}
