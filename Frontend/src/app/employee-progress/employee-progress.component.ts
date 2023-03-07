@@ -60,7 +60,7 @@ export class EmployeeProgressComponent implements OnInit {
   formatEmployeeTimeResults(value: any) {
     console.log(value);
     return [{ name: 'Employee task time', series: value.map((task: any) => {
-      return {name: task.difficulty, value: new Date(new Date(task.end_date).getTime() - new Date(task.start_date).getTime()).getHours()}
+      return {name: task.difficulty, value: (new Date(task.end_date).getTime() - new Date(task.start_date).getTime())/(60*60*1000)}
     })}];
   }
 
