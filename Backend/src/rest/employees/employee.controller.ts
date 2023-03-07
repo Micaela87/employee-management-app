@@ -16,18 +16,18 @@ export class EmployeeController {
     return this.employeeService.getAllEmployees();
   }
 
-  @Get(':email')
-  findOne(@Param('email') email: string) {
-    return this.employeeService.getEmployee(email);
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.employeeService.getEmployee(id);
   }
 
-  @Patch(':email')
-  update(@Param('email') email: string, @Body() updateUserDto: UpdateEmployeeDto) {
-    return this.employeeService.updateEmployee(email, updateUserDto);
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateEmployeeDto) {
+    return this.employeeService.updateEmployee(id, updateUserDto);
   }
 
-  @Delete(':email')
-  remove(@Param('email') email: string) {
-    return this.employeeService.removeEmployee(email);
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.employeeService.removeEmployee(id);
   }
 }

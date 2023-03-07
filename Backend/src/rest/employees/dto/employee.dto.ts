@@ -14,6 +14,7 @@ export class CreateEmployeeDto {
 }
 
 export class UpdateEmployeeDto {
+    id: string;
     email: string;
     username: string;
     password: string;
@@ -28,6 +29,7 @@ export class UpdateEmployeeDto {
 
 export const EmployeeSchema = Joi.object({
 
+    id: Joi.string(),
     email: Joi.string().email().required(),
     username: Joi.string().required(),
     password: Joi.string().required(),
