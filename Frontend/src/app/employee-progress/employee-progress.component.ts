@@ -10,10 +10,11 @@ import { ActivatedRoute } from '@angular/router'
 
 export class EmployeeProgressComponent implements OnInit {
 
-  tasks?: Task[];
+  tasks?: any[];
   employeeId!: string;
   taskTime: any = [];
   employeeProgress: any = [];
+  employee?: Employee;
 
   constructor(
     private route: ActivatedRoute
@@ -33,12 +34,15 @@ export class EmployeeProgressComponent implements OnInit {
 
         if (response.ok) {
           
-          const employee = await response.json();
+          this.employee = await response.json();
 
-          this.tasks = employee.tasks;
+          if (this.employee?.tasks) {
+            this.tasks = this.employee?.tasks;
 
-          this.taskTime = this.formatEmployeeTimeResults(this.tasks);
-          this.employeeProgress = this.formatEmployeeProgressResults(this.tasks);
+            this.taskTime = this.formatEmployeeTimeResults(this.tasks);
+            this.employeeProgress = this.formatEmployeeProgressResults(this.tasks);
+          }
+          
         }
 
       } catch(error) {

@@ -1,5 +1,5 @@
 <div class="flex-container" style="height: 100vh; padding: 20px 0">
-    <ng-container *ngIf="taskTime.length && employeeProgress.length">
+    <ng-container *ngIf="tasks?.length; else noDataAvailable">
         <ngx-charts-line-chart
             [view]="[1000,360]"
             [results]="taskTime"
@@ -31,4 +31,7 @@
             [autoScale]="false"
         ></ngx-charts-line-chart>
     </ng-container>
+    <ng-template #noDataAvailable>
+        <h2>No data available for {{ employee?.first_name }} {{ employee?.last_name }}</h2>
+    </ng-template>
 </div>
