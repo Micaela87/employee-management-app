@@ -1,3 +1,5 @@
+import { Employee } from "./employee";
+
 export type Task = {
     id: string;
     title: string;
@@ -6,4 +8,5 @@ export type Task = {
     end_date: Date;
     ext_date: Date;
     comments?: string;
+    employee: Employee
 }
