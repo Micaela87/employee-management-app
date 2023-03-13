@@ -45,8 +45,6 @@ export class EmployeesProgressComponent implements OnInit {
       if (this.employeeMap[task.employee.id]) {
 
         this.employeeMap[task.employee.id]["employee task time"] += (new Date(task.end_date).getTime() - new Date(task.start_date).getTime());
-        const date = new Date(task.ext_date);
-        date.setHours(0, 0, 0, 1000);
         this.employeeMap[task.employee.id]["task estimated time"] += (new Date(task.ext_date).getTime() - new Date(task.start_date).getTime());
 
       } else {
@@ -62,7 +60,7 @@ export class EmployeesProgressComponent implements OnInit {
 
     for (let key in this.employeeMap) {
 
-      this.finalResult.push({name: this.employeeMap[key]["name"], series: [{name: "Task estimated time", value: this.employeeMap[key]["task estimated time"]/(1e6)}, {name: "Employee task time", value: this.employeeMap[key]["employee task time"]/(1e6)}]});
+      this.finalResult.push({name: this.employeeMap[key]["name"], series: [{name: "Task estimated time", value: this.employeeMap[key]["task estimated time"]/(3.6e+6)}, {name: "Employee task time", value: this.employeeMap[key]["employee task time"]/(3.6e+6)}]});
 
     }
 
