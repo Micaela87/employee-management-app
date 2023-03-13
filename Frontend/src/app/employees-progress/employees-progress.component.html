@@ -1,1 +1,21 @@
-<p>employees-progress works!</p>
+<div class="flex-container" *ngIf="finalResult.length">
+    <ngx-charts-bar-vertical-2d
+        [view]="[1000,360]"
+        [animations]="true"
+        [showDataLabel]="true"
+        [results]="finalResult"
+        [xAxisLabel]="'Task'"
+        [legendTitle]="'Employee Progress'"
+        [yAxisLabel]="'Time in Hours'"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [rotateXAxisTicks]="true"
+        [showGridLines]="true"
+        [groupPadding]="16"
+        [barPadding]="8"
+    >
+    </ngx-charts-bar-vertical-2d>
+</div>
