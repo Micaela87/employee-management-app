@@ -10,6 +10,7 @@ import { EmployeeProgressComponent } from './employee-progress/employee-progress
 import { HomepageComponent } from './homepage/homepage.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { PasswordPipe } from './pipes/password.pipe';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PasswordPipe } from './pipes/password.pipe';
     EmployeeComponent,
 
     // pipes
-    PasswordPipe
+    PasswordPipe,
+      NavbarComponent
   ],
   imports: [
     BrowserModule,

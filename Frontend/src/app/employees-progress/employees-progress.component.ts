@@ -13,6 +13,12 @@ export class EmployeesProgressComponent implements OnInit {
   employeeTasksResult: any[] = [];
   tasksExpectedTime: any[] = [];
   finalResult: any[] = [];
+  buttons: {route: string, img: string}[] = [
+    {
+      route: "/",
+      img: "../../assets/src/home.png"
+    }
+  ]
 
   constructor() { }
 

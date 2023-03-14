@@ -22,6 +22,13 @@ export class EmployeeComponent implements OnInit {
     "contract_exp_date": ["Fine rapporto di lavoro", "date"]
   }
 
+  buttons: {route: string, img: string}[] = [
+    {
+      route: "/",
+      img: "../../assets/src/home.png"
+    }
+  ]
+
   async ngOnInit() {
 
     try {

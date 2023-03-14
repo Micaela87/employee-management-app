@@ -1,4 +1,5 @@
-<div class="flex-container" style="height: 100vh; padding: 20px 0">
+<app-navbar [buttons]="buttons"></app-navbar>
+<div class="flex-container" style="padding: 20px 0">
     <ng-container *ngIf="tasks?.length; else noDataAvailable">
         <ngx-charts-line-chart
             [view]="[1000,360]"

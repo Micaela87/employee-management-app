@@ -1,0 +1,7 @@
+<div class="navbar">
+    <button *ngFor="let button of buttons">
+        <a [routerLink]="button.route">
+            <img [src]="button.img">
+        </a>
+    </button>
+</div>

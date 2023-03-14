@@ -1,12 +1,12 @@
+<app-navbar [buttons]="buttons"></app-navbar>
 <div class="flex-container" *ngIf="finalResult.length">
     <ngx-charts-bar-vertical-2d
         [view]="[1000,360]"
         [animations]="true"
         [showDataLabel]="true"
         [results]="finalResult"
-        [xAxisLabel]="'Task'"
         [legendTitle]="'Employee Progress'"
-        [yAxisLabel]="'Time in Hours'"
+        [yAxisLabel]="'Hours'"
         [legend]="true"
         [showXAxisLabel]="true"
         [showYAxisLabel]="true"

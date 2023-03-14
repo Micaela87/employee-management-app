@@ -15,6 +15,16 @@ export class EmployeeProgressComponent implements OnInit {
   taskTime: any = [];
   employeeProgress: any = [];
   employee?: Employee;
+  buttons: {route: string, img: string}[] = [
+    {
+      route: "/employees",
+      img: "../../assets/src/back.png"
+    },
+    {
+      route: "/",
+      img: "../../assets/src/home.png"
+    }
+  ]
 
   constructor(
     private route: ActivatedRoute
